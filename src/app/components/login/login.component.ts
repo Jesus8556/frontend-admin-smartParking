@@ -23,7 +23,7 @@ export class LoginComponent {
     const response = await this.usersService.login(this.formulario.value)
     if (!response.error){
       console.log(response)
-      this.router.navigate(['/']) 
+      this.router.navigate(['/empresas']) 
     }
     
   }
