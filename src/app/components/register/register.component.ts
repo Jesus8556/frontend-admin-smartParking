@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -9,6 +11,7 @@ import { UsersService } from 'src/app/services/users.service';
 export class RegisterComponent {
   formulario : FormGroup
   usersService = inject(UsersService)
+  router = inject(Router)
   constructor(){
     //Peticiones del formulario
     this.formulario = new FormGroup({
@@ -19,5 +22,7 @@ export class RegisterComponent {
   async onSubmit(){
     const response = await this.usersService.register(this.formulario.value)
     console.log(response);
+    this.router.navigate(['/'])
+
   }
 }

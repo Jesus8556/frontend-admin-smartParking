@@ -11,6 +11,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { EmpresasComponent } from './components/empresas/empresas.component';
 import { NavComponent } from './components/dashboard/nav/nav.component';
 import { SideComponent } from './components/dashboard/side/side.component';
+import { NivelesComponent } from './components/niveles/niveles.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SideComponent } from './components/dashboard/side/side.component';
     RegisterComponent,
     EmpresasComponent,
     NavComponent,
-    SideComponent
+    SideComponent,
+    NivelesComponent
   ],
   imports: [
     BrowserModule,

@@ -9,13 +9,13 @@
 </head>
 
 <body >
-  <div *ngIf="!isLoginPage()">
+  <div *ngIf="!isLoginPage() && !isRegisterPage()">
     <app-nav></app-nav>
   </div>
   
   <div id="layoutSidenav">
 
-    <div id="layoutSidenav_nav" *ngIf="!isLoginPage()">
+    <div id="layoutSidenav_nav" *ngIf="!isLoginPage() && !isRegisterPage()">
       <app-side></app-side>
 
     </div>
@@ -31,7 +31,7 @@
           </div>
         </div>
       </main>
-      <footer class="py-4 bg-light mt-auto" *ngIf="!isLoginPage()">
+      <footer class="py-4 bg-light mt-auto" *ngIf="!isLoginPage() && !isRegisterPage()">
         <div class="container-fluid px-4">
           <div class="d-flex align-items-center justify-content-between small">
             <div class="text-muted">Copyright &copy; Your Website 2023</div>

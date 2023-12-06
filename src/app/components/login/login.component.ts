@@ -27,4 +27,9 @@ export class LoginComponent {
     }
     
   }
+  onRegisterClick() {
+    // Lógica de registro
+    this.router.navigate(['/register']) 
+    // Puedes redirigir a la página de registro, mostrar un modal, etc.
+  }
 }
