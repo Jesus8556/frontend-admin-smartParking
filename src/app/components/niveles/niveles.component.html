@@ -1,11 +1,9 @@
-<p>niveles works!</p>
-<!-- niveles.component.html -->
 
 <section class="py-5 text-center container" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://blog.tps.com.mx/hubfs/Blog%20Marzo%202019/7-TPS-Marzo-Imagenes-Blog-Medidas-de-precaucion-para-el-estacionamiento-solo.jpg'); background-size: cover; background-position: center; color: white;">
     <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-dark">Lista de empresas</h1>
-            <h1 class="fw-light">Revisa, Crea y Actualiza según lo indicado!!!</h1>
+            <h1 class="fw-dark">Niveles de estacionamiento</h1>
+            <h1 class="fw-light">Lista completa de niveles de cada Empresa </h1>
             <p>
                 <button href="#" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar Empresa</button>
             </p>
@@ -20,7 +18,7 @@
           <div class="card shadow-sm">
             <div class="image-container">
               <a [routerLink]="['/niveles']">
-                <img class="bd-placeholder-img card-img-top" [src]="" alt="Thumbnail">
+                <img class="bd-placeholder-img card-img-top" [src]="nivel.imagen" alt="Thumbnail">
               </a>
     
             </div>
@@ -46,13 +44,3 @@
 
 
 
-
-
-<div *ngFor="let nivel of niveles">
-    <div>
-      <h2>{{ nivel.nivel }}</h2>
-      <p>Empresa: {{ nivel.empresa.nombre }}</p>
-      <!-- Otras propiedades del nivel que quieras mostrar -->
-    </div>
-  </div>
-  
