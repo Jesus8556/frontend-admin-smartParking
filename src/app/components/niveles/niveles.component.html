@@ -11,27 +11,31 @@
     </div>
 </section>
   
-  <div class="album py-5 bg-light">
-    <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-2">
-        <div class="col" *ngFor="let nivel of niveles">
-          <div class="card shadow-sm">
-            <div class="image-container">
-              <a [routerLink]="['/niveles']">
-                <img class="bd-placeholder-img card-img-top" [src]="nivel.imagen" alt="Thumbnail">
-              </a>
-    
-            </div>
-            <div class="card-body">
-              <h4 class="card-title">{{nivel.nivel}}</h4>
-            
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-warning" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal" >Editar </button>
-                  <button type="button" class="btn btn-sm btn-outline-danger"
-                    >Eliminar</button>
-                </div>
+
+
+
+
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-2">
+      <div class="col" *ngFor="let nivel of niveles">
+        <div class="card shadow-sm">
+          <div class="image-container">
+            <a [routerLink]="['/niveles']">
+              <img class="bd-placeholder-img card-img-top" [src]="nivel.imagen" alt="Thumbnail">
+            </a>
+  
+          </div>
+          <div class="card-body">
+
+            <h4 class="card-title">{{nivel.nivel}}</h4>
+            <!-- Otras propiedades del nivel que quieras mostrar -->
+
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-sm btn-outline-warning"  (click)="loadNivelDetails(nivel._id)">Editar</button>
+                <button type="button" class="btn btn-sm btn-outline-danger" (click)="deleteNivel(nivel._id)">Eliminar</button>
               </div>
             </div>
           </div>
@@ -39,8 +43,47 @@
       </div>
     </div>
   </div>
-  
+</div>
 
-
-
-
+<!-- Modal para agregar/editar Nivel -->
+<!-- Modal para agregar/editar Nivel -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  (hidden.bs.modal)="resetForm()">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">{{selectedNivelId ? 'Editar Nivel' : 'Agregar Nivel'}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="nivelForm" (ngSubmit)="submitNivelForm()">
+          <div class="mb-3">
+            <label for="nivel" class="form-label">Nivel</label>
+            <input type="text" class="form-control" formControlName="nivel" required>
+          </div>
+        
+          <!-- Agregar campo para la empresa -->
+          <div class="mb-3">
+            <label for="empresa" class="form-label">Empresa</label>
+            <input type="text" class="form-control" formControlName="empresa" required>
+          </div>
+        
+          <!-- Agregar campo para la imagen -->
+          <div class="mb-3">
+            <label for="imagen" class="form-label">Imagen URL</label>
+            <input type="text" class="form-control" formControlName="imagen" required>
+          </div>
+        
+          <!-- Otros campos según tus necesidades -->
+        
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+            {{selectedNivelId ? 'Editar' : 'Agregar'}}
+          </button>
+        </form>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
