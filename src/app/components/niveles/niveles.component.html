@@ -22,7 +22,7 @@
       <div class="col" *ngFor="let nivel of niveles">
         <div class="card shadow-sm">
           <div class="image-container">
-            <a [routerLink]="['/niveles']">
+            <a [routerLink]="['/parking', nivel._id]">
               <img class="bd-placeholder-img card-img-top" [src]="nivel.imagen" alt="Thumbnail">
             </a>
   

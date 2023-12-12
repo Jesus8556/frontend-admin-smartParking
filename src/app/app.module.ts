@@ -12,6 +12,8 @@ import { EmpresasComponent } from './components/empresas/empresas.component';
 import { NavComponent } from './components/dashboard/nav/nav.component';
 import { SideComponent } from './components/dashboard/side/side.component';
 import { NivelesComponent } from './components/niveles/niveles.component';
+import { ParkingComponent } from './components/parking/parking.component';
+import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { NivelesComponent } from './components/niveles/niveles.component';
     EmpresasComponent,
     NavComponent,
     SideComponent,
-    NivelesComponent
+    NivelesComponent,
+    ParkingComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

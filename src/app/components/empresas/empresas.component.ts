@@ -99,6 +99,12 @@ export class EmpresasComponent {
   onFileSelected(event: any)  {
     this.selectedFile = event.target.files[0];
   }
+  resetForm(): void {
+    this.currentEmpresa.reset();
+    this.selectedFile = null;
+  }
+
+
   
 
 }

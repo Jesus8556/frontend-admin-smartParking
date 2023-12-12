@@ -1,40 +1,41 @@
-<section class="py-5 text-center  container" style="background-image: url('https://static.vecteezy.com/system/resources/previews/010/730/939/non_2x/northern-lights-landscape-background-free-vector.jpg'); background-size: cover; background-position: center; color: white;">
-  <div class="row py-lg-5">
-    <div class="col-lg-6 col-md-8 mx-auto">
-      <h1 class="fw-dark">Lista de empresas</h1>
-      <h1 class="fw-light" >Revisa, Crea y Actualiza según lo indicado!!!</h1>
-      <p>
-        <button href="#" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar Empresa</button>
-      </p>
+  <section class="py-5 text-center  container" style="background-image: url('https://static.vecteezy.com/system/resources/previews/010/730/939/non_2x/northern-lights-landscape-background-free-vector.jpg'); background-size: cover; background-position: center; color: white;">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-dark">Lista de empresas</h1>
+        <h1 class="fw-light" >Revisa, Crea y Actualiza según lo indicado!!!</h1>
+        <p>
+          <button href="#" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar Empresa</button>
+        </p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="album py-5 bg-light">
-  <div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-2">
-      <div class="col" *ngFor="let item of empresas">
-        <div class="card shadow-sm">
-          <div class="image-container">
-            <a [routerLink]="['/niveles', item._id]">
-              <img class="bd-placeholder-img card-img-top" [src]="item.imagen" alt="Thumbnail">
-            </a>
-  
-          </div>
-          <div class="card-body">
-            <h4 class="card-title">{{item.nombre}}</h4>
-            <p class="card-text">
-              <strong>Email:</strong> {{item.email}}
-            </p>
-            <p class="card-text">
-              <strong>Teléfono:</strong> {{item.telefono}}
-            </p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-warning" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal" (click)="editItem(item._id)">Editar </button>
-                <button type="button" class="btn btn-sm btn-outline-danger"
-                  (click)="deleteItem(item._id)">Eliminar</button>
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-2">
+        <div class="col" *ngFor="let item of empresas">
+          <div class="card shadow-sm">
+            <div class="image-container">
+              <a [routerLink]="['/niveles', item._id]">
+                <img class="bd-placeholder-img card-img-top" [src]="item.imagen" alt="Thumbnail">
+              </a>
+    
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">{{item.nombre}}</h4>
+              <p class="card-text">
+                <strong>Email:</strong> {{item.email}}
+              </p>
+              <p class="card-text">
+                <strong>Teléfono:</strong> {{item.telefono}}
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-warning" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal" (click)="editItem(item._id)">Editar </button>
+                  <button type="button" class="btn btn-sm btn-outline-danger"
+                    (click)="deleteItem(item._id)">Eliminar</button>
+                </div>
               </div>
             </div>
           </div>
@@ -42,54 +43,53 @@
       </div>
     </div>
   </div>
-</div>
 
 
 
 
-<!-- Button trigger modal -->
+  <!-- Button trigger modal -->
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Empresa</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form
-          (ngSubmit)="currentEmpresa._id ? updateItem(currentEmpresa._id, currentEmpresa) : createItem(currentEmpresa)">
-          <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" [(ngModel)]="currentEmpresa.nombre" id="nombre"
-              placeholder="Ingrese el nombre" [(ngModel)]="currentEmpresa.nombre" name="nombre" required>
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" [(ngModel)]="currentEmpresa.email" id="email"
-              placeholder="Ingrese el email" [(ngModel)]="currentEmpresa.email" name="email" required>
-          </div>
-          <div class="mb-3">
-            <label for="telefono" class="form-label">Teléfono</label>
-            <input type="text" class="form-control" [(ngModel)]="currentEmpresa.telefono" id="telefono"
-              placeholder="Ingrese el teléfono" [(ngModel)]="currentEmpresa.telefono" name="telefono" required>
-          </div>
-          <div class="mb-3">
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" (hidden.bs.modal)="resetForm()">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Empresa</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form
+            (ngSubmit)="currentEmpresa._id ? updateItem(currentEmpresa._id, currentEmpresa) : createItem(currentEmpresa)">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" [(ngModel)]="currentEmpresa.nombre" id="nombre"
+                placeholder="Ingrese el nombre" [(ngModel)]="currentEmpresa.nombre" name="nombre" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" [(ngModel)]="currentEmpresa.email" id="email"
+                placeholder="Ingrese el email" [(ngModel)]="currentEmpresa.email" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="telefono" class="form-label">Teléfono</label>
+              <input type="text" class="form-control" [(ngModel)]="currentEmpresa.telefono" id="telefono"
+                placeholder="Ingrese el teléfono" [(ngModel)]="currentEmpresa.telefono" name="telefono" required>
+            </div>
+            <div class="mb-3">
 
-            <label for="imagen" class="form-label">Imagen</label>
-            <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*"
-              (change)="onFileSelected($event)" required>
-            <small class="form-text text-muted">Seleccione una imagen desde su computadora.</small>
-          </div>
-          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">{{currentEmpresa._id ? 'Editar' :
-            'Añadir'}}</button>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <label for="imagen" class="form-label">Imagen</label>
+              <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*"
+                (change)="onFileSelected($event)" required>
+              <small class="form-text text-muted">Seleccione una imagen desde su computadora.</small>
+            </div>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">{{currentEmpresa._id ? 'Editar' :
+              'Añadir'}}</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>

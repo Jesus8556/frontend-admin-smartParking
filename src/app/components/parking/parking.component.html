@@ -1,0 +1,87 @@
+<!-- lugares.component.html -->
+<section class="py-5 text-center container" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://www.controldetransito.com.ar/wp-content/uploads/2018/12/estacionamientos-que-avisan-cuando-estan-libres.jpg'); background-size: cover; background-position: center; color: white;">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-dark">Lugares de estacionamiento</h1>
+      <h1 class="fw-light">Lista completa de lugares por nivel</h1>
+      <p>
+        <button href="#" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar Lugar</button>
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="album py-5 bg-light">
+  <div class="container-fluid">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <table class="table table-hover">
+          <thead class="text-center">
+            <tr>
+              <th style="font-size: 1.2em;">#</th>
+              <th style="font-size: 1.2em;">Lugar</th>
+              <th style="font-size: 1.2em;">Estado</th>
+              <th style="font-size: 1.2em;">Acciones</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr *ngFor="let lugar of lugares; let i = index">
+              <td style="font-size: 1.1em;">{{ i + 1 }}</td>
+              <td style="font-size: 1.1em;">{{ lugar.lugar }}</td>
+              <td style="font-size: 1.1em;">
+                <i class="fas fa-car" [ngStyle]="{ color: lugar.estado ? 'red' : 'green' }"></i>
+                {{ lugar.estado ? 'Ocupado' : 'Disponible' }}
+              </td>
+              <td>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  class="btn btn-sm btn-outline-success me-1" (click)="loadLugarDetails(lugar._id)">Editar</button>
+                <button type="button" class="btn btn-sm btn-outline-danger" (click)="deleteLugar(lugar._id)">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para agregar/editar Lugar -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" (hidden.bs.modal)="resetForm()">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">{{ selectedLugarId ? 'Editar Lugar' : 'Agregar Lugar' }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="lugarForm" (ngSubmit)="submitLugarForm()">
+          <div class="mb-3">
+            <label for="lugar" class="form-label">Lugar</label>
+            <input type="text" class="form-control" formControlName="lugar" required>
+          </div>
+
+          <!-- Mantén "nivel" si es el nombre correcto -->
+          <div class="mb-3">
+            <label for="nivel" class="form-label">Nivel</label>
+            <input type="text" class="form-control" formControlName="nivel" required>
+          </div>
+          
+          <div class="mb-3">
+            <label for="estado" class="form-label">Estado</label>
+            <select class="form-select" formControlName="estado" required>
+              <option value="true">Ocupado</option>
+              <option value="false">Disponible</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+            {{ selectedLugarId ? 'Editar' : 'Agregar' }}
+          </button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
