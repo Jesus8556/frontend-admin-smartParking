@@ -9,7 +9,7 @@ export class UsersService {
   private baseUrl:string;
   
   constructor() { 
-    this.baseUrl = "http://localhost:9000/api"
+    this.baseUrl = "http://52.0.224.33:9000/api"
   }
   register(formValue:any){
     return firstValueFrom(

@@ -6,7 +6,7 @@ import { Observable, map } from 'rxjs';
 })
 export class EmpresasService {
 
-  private empresaUrl = "http://localhost:9000/api/empresa"
+  private empresaUrl = "http://52.0.224.33:9000/api/empresa"
 
   constructor(private http:HttpClient) { }
 
@@ -40,7 +40,7 @@ export class EmpresasService {
   
   private transformEmpresas(empresas: any[]): any[] {
     return empresas.map(empresa => {
-      const imagenUrl = `http://localhost:9000/${empresa.imagen}`;
+      const imagenUrl = `http://52.0.224.33:9000/${empresa.imagen}`;
       return {
         ...empresa,
         imagen: imagenUrl
